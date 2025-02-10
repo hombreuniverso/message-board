@@ -30,7 +30,12 @@ const assetsPath = path.join(__dirname, "public");
 //folder with express.static()
 app.use(express.static(assetsPath));
 
+//Array of messages
+ messages = [
+  { text: "Hi there!", user: "John", added: new Date() },
+  { text: "Hello Universe!", user: "Charles", added: new Date() },
+];
+
 //Routes
 app.use("/", IndexRouter);
 app.use("/", newMessageRouter);
-

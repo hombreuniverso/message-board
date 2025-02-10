@@ -3,6 +3,16 @@
   <%- include("partials/header")%>
 
   <body>
-    <p>Homepage</p>
+    <!--Main Heading-->
+    <div class="main-heading"><%= mainHeading%></div>
+
+    <!--Message Container-->
+    <div class="message-container">
+      <ul>
+        <% messages.forEach((message)=>{%>
+        <li><%= `${message.user}: ${message.text} - ${message.Date}` %></li>
+        <% }) %>
+      </ul>
+    </div>
   </body>
 </html>

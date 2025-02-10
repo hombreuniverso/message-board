@@ -8,7 +8,7 @@ const IndexRouter = express.Router();
 
 //Create router logic
 IndexRouter.get('/', (req, res) =>{
-    res.render('index', {title: "Homepage"});
+    res.render('index', {title: "Homepage", mainHeading: "Mini Message Board", messages: messages});
 })
 
 //Export indexRouter

@@ -1,6 +1,22 @@
-body{
-    text-align: center;
-    font-weight: bold;
-    color: red;
-    background-color: aqua;
+body {
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+.main-heading {
+  padding: 10px;
+  margin: 0px;
+  text-align: center;
+  font-size: 25px;
+  font-weight: bold;
+  color: red;
+  background-color: aqua;
+}
+
+.message-container {
+  padding: 0;
+  margin: 0;
+  font-size: 20px;
+  background-color: lightpink;
 }
