@@ -11,7 +11,7 @@ const detailsRouter = require("./routes/detailsRouter");
 const app = express();
 
 //Create variable to store port value
-const port = 4000;
+const port = 3000;
 
 //Create server
 app.listen(port, (req, res) => {

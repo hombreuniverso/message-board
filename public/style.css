@@ -3,7 +3,22 @@ body {
   margin: 0;
   display: flex;
   flex-direction: column;
+  
 }
+
+.nav{ 
+  font-weight: bold;
+  background-color: yellow;
+
+}
+
+.nav-ul{
+  display: flex;
+ flex-direction: column;
+ gap: 20px;
+}
+
+
 .main-heading {
   padding: 10px;
   margin: 0px;
@@ -15,19 +30,46 @@ body {
 }
 
 .message-container {
-  background-color: lightpink;
+  margin-left: 20px;
   font-size: 20px;
- 
+}
+
+.user{
+  color: black;
+}
+
+.snippet{
+ color: red;
+  text-decoration: underline;
+}
+
+.details{
+  margin: 0;
+  color: black;
+  font-size: 30px;
+}
+
+.date{
+  color: black;
+}
+
+.message-ul{
+  display: flex;
+  flex-direction: column;
+ gap:  20px;
+}
+
+.line-anchor-container{
+  display: flex;
+  gap: 15px;
 }
 
 .form-container {
-  padding: 0;
-  margin: 0;
+  padding: 20px;
+  margin: 30px;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  border: 2px solid black;
+  flex-direction: column;  
+  border: 3px solid black;
   background-color: lightpink;
 }
 
@@ -35,6 +77,12 @@ form {
   background-color: lightgrey;
   display: flex;
   justify-content: center;
+}
+
+input,
+textarea {
+  width: 200px;
+  margin-top: 10px;
 }
 
 button {

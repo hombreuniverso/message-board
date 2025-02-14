@@ -4,27 +4,28 @@
 
   <body>
     <!--Navbar-->
-    <%- include("partials/navbar", {links: links})%>;
+    <%- include("partials/navbar", {links: links})%>
 
     <!--Main Heading-->
     <div class="main-heading"><%= mainHeading%></div>
 
     <!--Message Container-->
     <div class="message-container">
-      <ul>
+      <ul class="message-ul">
         <%for(i = 0; i < messages.length; i++){%> <%index = i%>
+        <div class="line-anchor-container">
+          <li class="line" data-linenum="<%= index%>">
+            <%= `${messages[i].user}: ${messages[i].snippet}
+            ${messages[i].added}` %>
+          </li>
 
-        <li class="line" data-linenum="<%= index%>">
-          <%= `${messages[i].user}: ${messages[i].snippet} ${messages[i].added}`
-          %>
-        </li>
-
-        <!--Use template literals for dynamic data
+          <!--Use template literals for dynamic data
         in javascript-->
 
-        <a id="anchor" class="anchor" data-anchornum="<%= index%>" href="#">
-          Open
-        </a>
+          <a id="anchor" class="anchor" data-anchornum="<%= index%>" href="#">
+            Open
+          </a>
+        </div>
 
         <%}%>
       </ul>
