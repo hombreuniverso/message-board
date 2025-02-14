@@ -3,14 +3,15 @@
 //Import express, path, ejs
 const express = require("express");
 const path = require("node:path");
-const IndexRouter = require("./routes/indexRouter");
-const newMessageRouter = require("./routes/newMessageRouter");
+const indexRouter = require("./routes/indexRouter");
+const formRouter = require("./routes/formRouter");
+const detailsRouter = require("./routes/detailsRouter");
 
 //Reference an instance of express
 const app = express();
 
 //Create variable to store port value
-const port = 3000;
+const port = 4000;
 
 //Create server
 app.listen(port, (req, res) => {
@@ -30,12 +31,39 @@ const assetsPath = path.join(__dirname, "public");
 //folder with express.static()
 app.use(express.static(assetsPath));
 
-//Array of messages
- messages = [
-  { text: "Hi there!", user: "John", added: new Date() },
-  { text: "Hello Universe!", user: "Charles", added: new Date() },
+//Create array of links
+links = [
+  { href: "/", text: "Homepage" },
+  { href: "/new", text: "New Message" },
 ];
 
+//Create a date variable for manipulation
+const date = new Date();
+
+//Array of messages
+
+messages = [
+  {
+    user: "John",
+    snippet: "Hi there!",
+    details: "It is awesome!",
+    added: date.toDateString(),
+  },
+
+  {
+    user: "Charles",
+    snippet: "Hello Universe!",
+    details: "I love you!",
+    added: date.toDateString(),
+  },
+];
+
+//Use express.urlencoded to access form data
+app.use(express.urlencoded({ extended: true }));
+
 //Routes
-app.use("/", IndexRouter);
-app.use("/", newMessageRouter);
+app.use("/", indexRouter);
+app.use("/", formRouter);
+app.use("/", detailsRouter);
+
+module.exports = messages;

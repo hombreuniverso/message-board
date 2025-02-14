@@ -1,0 +1,47 @@
+<html>
+  <!--Head-->
+  <%- include("partials/header")%>
+
+  <body>
+    <!--Navbar-->
+    <%- include("partials/navbar", {links: links})%>
+
+    <!--Main Heading-->
+    <div class="main-heading"><%= mainHeading%></div>
+
+    <!--Message Container-->
+    <div class="message-container">
+      <p><%= messages[index].user%></p>
+      <p><%= messages[index].snippet%></p>
+      <p><%= messages[index].details%></p>
+      <p><%= messages[index].added%></p>
+    </div>
+
+    <script>
+      //Run on Front end (Client side)
+      //Reference line and anchor tags
+      const anchor = document.querySelectorAll("#anchor");
+      const line = document.querySelectorAll(".line");
+
+      anchor.forEach((anchor) => {
+        anchor.addEventListener("click", (e) => {
+          let index = anchor.dataset.anchornum;
+          let info = messages[Number(anchor.dataset.anchornum)];
+
+          //Loop through messages with for loop
+          for (i = 0; i < messages.length; i++) {
+            if (anchor.dataset.anchornum >= messages.length) {
+              //push into messages
+              messages.push({
+                user: user,
+                snippet: snippet,
+                details: details,
+                added: date,
+              });
+            }
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

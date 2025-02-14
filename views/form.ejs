@@ -1,0 +1,28 @@
+<!--Head-->
+<%- include("partials/header")%>
+
+<body>
+  <%- include("partials/navbar", {links: links});%>
+  <!--Main Heading-->
+  <div class="main-heading"><%= mainHeading%></div>
+
+  <form method="post" action="/new">
+    <!--Container for Form-->
+    <div class="form-container">
+      <!--User-->
+      <label for="user">Author</label>
+      <input name="user" id="user" required /><br />
+
+      <!--Snippet-->
+      <label for="snippet">Snippet</label>
+      <input name="snippet" id="snippet" required /><br />
+
+      <!--Main part of message-->
+      <label for="details">Details</label>
+      <input name="details" id="details" required /><br />
+
+      <!--Submit button-->
+      <button>Submit</button>
+    </div>
+  </form>
+</body>
