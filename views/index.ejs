@@ -22,9 +22,9 @@
           <!--Use template literals for dynamic data
         in javascript-->
 
-          <a id="anchor" class="anchor" data-anchornum="<%= index%>" href="#">
-            Open
-          </a>
+         <button id="btn-open" class="btn-open" data-anchornum="<%= index%>">
+           Open
+         </button>
         </div>
 
         <%}%>
@@ -35,25 +35,26 @@
       //Run on Front end (Client side)
 
       //Reference line and anchor tags
-      const anchor = document.querySelectorAll(".anchor");
+      const anchor = document.querySelectorAll(".btn-open");
       const line = document.querySelectorAll(".line");
 
       let index = "";
 
       //Find index of line clicked
-      anchor.forEach((anchor) => {
-        anchor.addEventListener("click", (e) => {
-          index = anchor.dataset.anchornum;
+      const buttons = document.querySelectorAll(".btn-open");
 
-          //Attach index in query
-          anchor.href = `details?index=${index}`;
+buttons.forEach((button) => {
+  button.addEventListener("click", (e) => {
+    const index = button.dataset.anchornum;
+    location.href = `details?index=${index}`;
+  });
+});
           /* data = document.getElementById("anchor").href = `details?index=${index}&data=${encodeURIComponent(
                   JSON.stringify(inf0)
                 )}`;
            */
           //e.preventDefault();
-        });
-      });
+      
     </script>
   </body>
 </html>
