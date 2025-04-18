@@ -15,5 +15,5 @@ module.exports.getDetails = (req, res) => {
     mainHeading: "Details",
     index: index,
   });
-  console.log(index);
+
 };

@@ -11,6 +11,6 @@ module.exports.renderIndex = (req, res) => {
     mainHeading: "Mini Message Board",
     messages: messages,
     linksNav: links,
-    //index: index,
+    
   });
 };

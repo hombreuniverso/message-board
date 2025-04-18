@@ -32,6 +32,22 @@
     <script>
       //Run on Front end (Client side)
 
+      //Return to original code:
+
+      //Find index of button clicked
+      const buttons = document.querySelectorAll(".btn-open");
+
+      buttons.forEach((button) => {
+        button.addEventListener("click", (e) => {
+          let index = button.dataset.anchornum;
+          //let currentIndex = Array.prototype.indexOf.call(buttons, e.target);
+          location.href = `details?index=${index}`;
+          // console.log({ index:currentIndex });
+          console.log({ index });
+          // e.preventDefault();
+        });
+      });
+
       //Reference line and anchor tags
       // const anchor = document.querySelectorAll(".btn-open");
       //  const line = document.querySelectorAll(".line");
@@ -41,6 +57,10 @@
       /*Prevent buttons not returning correct index numbers because
             the js code is not re-executed and the event listeners are not
             re-attached to the buttons when browser's back arrow is used
+
+        However, it turned out that the problem was not the 
+        event listeners. The problem was the css styles like hovering,
+        relative and absolute positioning. 
 
             Event Delegation is a more robust solution
 
@@ -62,7 +82,7 @@
                 console.log({ index });
               }
             });
-      */
+            */
 
       /*Alternatively:
       You can also try using the
@@ -72,19 +92,23 @@
       even when the page is navigated back using the browser's
       back button.
       */
+
+      /*
       //Find index of button clicked
       const buttons = document.querySelectorAll(".btn-open");
-
-    
+      window.addEventListener("load", () => {
         buttons.forEach((button) => {
           button.addEventListener("click", (e) => {
-            let currentIndex = Array.prototype.indexOf.call(buttons, e.target);
-            location.href = `details?index=${currentIndex}`;
-            console.log({ index:currentIndex });
+            let index = e.target.dataset.anchornum;
+            //let currentIndex = Array.prototype.indexOf.call(buttons, e.target);
+            location.href = `details?index=${index}`;
+            // console.log({ index:currentIndex });
+            console.log({ index });
             // e.preventDefault();
           });
         });
-     
+      });
+      */
 
       /* data = document.getElementById("anchor").href = `details?index=${index}&data=${encodeURIComponent(
                         JSON.stringify(info)
