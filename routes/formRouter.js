@@ -2,30 +2,15 @@
 
 //Import express
 const express = require("express");
+const formsController = require("../controllers/formsController");
 const { title } = require("process");
 
 //Reference router
 const formRouter = express.Router();
 
-formRouter.get("/new", (req, res) => {
-  res.render("form", { title: "Form", mainHeading: "Form" });
-});
+formRouter.get("/new", formsController.getForm);
 
-formRouter.post("/new", (req, res) => {
-  //Use req.body to access form data via "name"
-  user = req.body.user;
-  snippet = req.body.snippet;
-  details = req.body.details;
-  date = new Date().toDateString();
-  messages.push({
-    user: user,
-    snippet: snippet,
-    details: details,
-    added: date,
-  });
-  console.log(messages);
-  res.redirect("/");
-});
+formRouter.post("/new", formsController.postForm);
 
 //Export newMessageRouter
 module.exports = formRouter;
