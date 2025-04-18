@@ -4,7 +4,7 @@
 
   <body>
     <!--Navbar-->
-    <%- include("partials/navbar", {links: links})%>
+    <%- include("partials/navbar", {linksNav: links})%>
 
     <!--Main Heading-->
     <div class="main-heading"><%= mainHeading%></div>
@@ -12,19 +12,17 @@
     <!--Message Container-->
     <div class="message-container">
       <ul class="message-ul">
-        <%for(i = 0; i < messages.length; i++){%> <%index = i%>
+        <%for(i = 0; i < messages.length; i++){%> <%let index = i%>
         <div class="line-anchor-container">
-          <li class="line" data-linenum="<%= index%>">
-            <%= `${messages[i].user}: ${messages[i].snippet}
+          <li class="line" data-anchornum="<%=index%>">
+            <%= `${messages[i].id} ${messages[i].user}: ${messages[i].snippet}
             ${messages[i].added}` %>
           </li>
 
           <!--Use template literals for dynamic data
         in javascript-->
 
-         <button id="btn-open" class="btn-open" data-anchornum="<%= index%>">
-           Open
-         </button>
+          <button class="btn-open" data-anchornum="<%=index%>">Open</button>
         </div>
 
         <%}%>
@@ -35,26 +33,64 @@
       //Run on Front end (Client side)
 
       //Reference line and anchor tags
-      const anchor = document.querySelectorAll(".btn-open");
-      const line = document.querySelectorAll(".line");
+      // const anchor = document.querySelectorAll(".btn-open");
+      //  const line = document.querySelectorAll(".line");
 
-      let index = "";
+      // let index = "";
 
-      //Find index of line clicked
+      /*Prevent buttons not returning correct index numbers because
+            the js code is not re-executed and the event listeners are not
+            re-attached to the buttons when browser's back arrow is used
+
+            Event Delegation is a more robust solution
+
+            Instead of attaching the event listener to each button
+            individually, you can attach a single event listener to the
+            parent element of the buttons (in this case, the
+            .message-container element). Then, when a button is clicked,
+            you can use the event.target property to determine which
+            button was clicked. E.g.:
+
+
+            //Find index of button clicked
+            const messageContainer = document.querySelector(".message-container");
+
+            messageContainer.addEventListener("click", (e) => {
+              if (e.target.classList.contains("btn-open")) {
+                let index = e.target.dataset.anchornum;
+                location.href = `details?index=${index}`;
+                console.log({ index });
+              }
+            });
+      */
+
+      /*Alternatively:
+      You can also try using the
+      window.addEventListener('load', ...) method to re-attach the
+      event listeners to the buttons when the page is loaded. This
+      can help ensure that the event listeners are always attached,
+      even when the page is navigated back using the browser's
+      back button.
+      */
+      //Find index of button clicked
       const buttons = document.querySelectorAll(".btn-open");
 
-buttons.forEach((button) => {
-  button.addEventListener("click", (e) => {
-    const index = button.dataset.anchornum;
-    location.href = `details?index=${index}`;
-  });
-});
-          /* data = document.getElementById("anchor").href = `details?index=${index}&data=${encodeURIComponent(
-                  JSON.stringify(inf0)
-                )}`;
-           */
-          //e.preventDefault();
-      
+    
+        buttons.forEach((button) => {
+          button.addEventListener("click", (e) => {
+            let currentIndex = Array.prototype.indexOf.call(buttons, e.target);
+            location.href = `details?index=${currentIndex}`;
+            console.log({ index:currentIndex });
+            // e.preventDefault();
+          });
+        });
+     
+
+      /* data = document.getElementById("anchor").href = `details?index=${index}&data=${encodeURIComponent(
+                        JSON.stringify(info)
+                      )}`;
+                 */
+      //e.preventDefault();
     </script>
   </body>
 </html>

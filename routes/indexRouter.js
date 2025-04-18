@@ -2,18 +2,13 @@
 
 //Import express
 const express = require("express");
+const indexController = require("../controllers/indexController");
 
 //Reference router
 const IndexRouter = express.Router();
 
 //Create router logic
-IndexRouter.get("/", (req, res) => {
-  res.render("index", {
-    title: "Homepage",
-    mainHeading: "Mini Message Board",
-    messages: messages,
-  });
-});
+IndexRouter.get("/", indexController.renderIndex);
 
 //Export indexRouter
 module.exports = IndexRouter;
