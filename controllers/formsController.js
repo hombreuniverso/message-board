@@ -20,8 +20,12 @@ module.exports.postForm = (req, res) => {
     snippet = req.body.snippet;
     details = req.body.details;
     date = new Date().toDateString();
+<<<<<<< HEAD
     messages.push({       
       id: messages.length,
+=======
+    messages.push({
+>>>>>>> a1d6dbe3cbb13d9af7d35a6e6a28d5549456c739
       user: user,
       snippet: snippet,
       details: details,
