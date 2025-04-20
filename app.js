@@ -6,6 +6,9 @@ const path = require("node:path");
 const indexRouter = require("./routes/indexRouter");
 const formRouter = require("./routes/formRouter");
 const detailsRouter = require("./routes/detailsRouter");
+const deleteRouter = require("./routes/deleteRouter");
+const testConnection = require("./test-connection");
+const { initializeDatabase, pool} = require("./initialize-db");
 
 //Reference an instance of express
 const app = express();
@@ -42,9 +45,15 @@ app.use(express.static(assetsPath));
 //Use express.urlencoded to access form data
 app.use(express.urlencoded({ extended: true }));
 
+// Call testConnection and initializeDatabase after Express app is configured
+testConnection();
+initializeDatabase();
+
+
 //Routes
 app.use("/", indexRouter);
 app.use("/", formRouter);
 app.use("/", detailsRouter);
+app.use('/', deleteRouter);
 
 module.exports = messages;

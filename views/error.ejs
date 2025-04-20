@@ -1,0 +1,22 @@
+<!--index template ejs-->
+<!DOCTYPE html>
+<html lang="en">
+  <!--Head template ejs-->
+  <%- include('./partials/header.ejs') %>
+  <body>
+    <div class="display-container">
+      <h1><%= title %></h1>
+      <!--Validate errors (400)-->
+      <%if(errors.length != 0){%>
+         <%for(let i = 0; i < errors.length; i++) {%>
+      <p><%= errors[i].msg %></p>
+      <%}%> <%}else{%>
+         <p><%= message %></p>
+         <%}%>
+
+      <!--Internal errors (500)-->
+
+      <a class="back" href="/">Back</a>
+    </div>
+  </body>
+</html>
