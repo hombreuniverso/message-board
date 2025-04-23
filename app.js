@@ -15,7 +15,7 @@ const { initializeDatabase, pool } = require("./initialize-db");
 const app = express();
 
 //Create variable to store port value
-const port = process.env.Port || 8000;
+const port = process.env.Port || 8080;
 
 //Create server
 app.listen(port, (req, res) => {
