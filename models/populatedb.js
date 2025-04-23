@@ -17,12 +17,15 @@ console.log(SQL);
 
 async function main() {
   let connectionString;
-
+  /*
   if (process.env.NODE_ENV === "production") {
     connectionString = process.env.PRODUCTION_DATABASE_URL;
   } else {
     connectionString = process.env.LOCAL_DATABASE_URL;
   }
+    */
+
+  connectionString = process.env.LOCAL_DATABASE_URL;
 
   console.log("seeding....");
   const client = new Client(connectionString);

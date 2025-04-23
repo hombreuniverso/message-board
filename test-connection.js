@@ -10,12 +10,15 @@ If you use the direct form (pool), you can only export a single value.
 
 // Create connection pool using environment variables
 let connectionString;
-
+/*
 if (process.env.NODE_ENV === "production") {
   connectionString = process.env.PRODUCTION_DATABASE_URL;
 } else {
   connectionString = process.env.LOCAL_DATABASE_URL;
 }
+*/
+
+connectionString = process.env.LOCAL_DATABASE_URL;
 
 // Test connection function
 async function testConnection() {

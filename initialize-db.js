@@ -4,12 +4,16 @@ const { Pool } = require("pg");
 
 // Create connection pool using environment variables
 let connectionString;
-
+/*
 if (process.env.NODE_ENV === "production") {
   connectionString = process.env.PRODUCTION_DATABASE_URL;
 } else {
   connectionString = process.env.LOCAL_DATABASE_URL;
 }
+  */
+
+connectionString = process.env.LOCAL_DATABASE_URL;
+
 const pool = new Pool({
   //connectionString: "postgresql://<role_name>:<role_password>@localhost:5432/top_users"
   connectionString: connectionString,
