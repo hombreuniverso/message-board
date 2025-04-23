@@ -1,18 +1,22 @@
 //Imports
 require("dotenv").config(); //Load environment variables
 const { Pool } = require("pg");
+const env = require("./config");
 
 // Create connection pool using environment variables
 let connectionString;
-/*
-if (process.env.NODE_ENV === "production") {
-  connectionString = process.env.PRODUCTION_DATABASE_URL;
-} else {
-  connectionString = process.env.LOCAL_DATABASE_URL;
-}
-  */
 
-connectionString = process.env.LOCAL_DATABASE_URL;
+if (env.NODE_ENV === "production") {
+  connectionString = process.env.PRODUCTION_DATABASE_URL;
+} else if (env.NODE_ENV === "development") {
+  connectionString = process.env.LOCAL_DATABASE_URL;
+} else {
+  throw new Error(`Unsupported NODE_ENV: ${process.env.NODE_ENV}`);
+}
+
+if (!connectionString) {
+  throw new Error("Connection string is not set");
+}
 
 const pool = new Pool({
   //connectionString: "postgresql://<role_name>:<role_password>@localhost:5432/top_users"

@@ -10,6 +10,24 @@ const searchRouter = require("./routes/searchRouter");
 const deleteRouter = require("./routes/deleteRouter");
 const testConnection = require("./test-connection");
 const { initializeDatabase, pool } = require("./initialize-db");
+const env = require("./config");
+
+// Get the connection string based on the NODE_ENV
+if (env.NODE_ENV === "production") {
+  connectionString = env.PRODUCTION_DATABASE_URL;
+} else if (env.NODE_ENV === "development") {
+  connectionString = env.LOCAL_DATABASE_URL;
+} else {
+  throw new Error(`Unsupported NODE_ENV: ${env.NODE_ENV}`);
+}
+
+if (!connectionString) {
+  throw new Error("Connection string is not set");
+}
+
+// Now you can access the environment variables
+console.log(env.LOCAL_DATABASE_URL);
+console.log(env.PRODUCTION_DATABASE_URL);
 
 //Reference an instance of express
 const app = express();
@@ -48,5 +66,3 @@ app.use("/", formRouter);
 app.use("/", detailsRouter);
 app.use("/", deleteRouter);
 app.use("/", searchRouter);
-
-//module.exports = messages;

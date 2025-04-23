@@ -2,6 +2,7 @@
 
 //Import
 const { Client } = require("pg");
+const env = require('./config');
 
 //Create username table
 const SQL = `
@@ -16,16 +17,20 @@ added DATE
 console.log(SQL);
 
 async function main() {
-  let connectionString;
-  /*
-  if (process.env.NODE_ENV === "production") {
-    connectionString = process.env.PRODUCTION_DATABASE_URL;
-  } else {
-    connectionString = process.env.LOCAL_DATABASE_URL;
-  }
-    */
-
-  connectionString = process.env.LOCAL_DATABASE_URL;
+ // Create connection pool using environment variables
+ let connectionString;
+ 
+ if (env.NODE_ENV === "production") {
+   connectionString = process.env.PRODUCTION_DATABASE_URL;
+ } else if (env.NODE_ENV === "development") {
+   connectionString = process.env.LOCAL_DATABASE_URL;
+ } else {
+   throw new Error(`Unsupported NODE_ENV: ${process.env.NODE_ENV}`);
+ }
+ 
+ if (!connectionString) {
+   throw new Error("Connection string is not set");
+ }
 
   console.log("seeding....");
   const client = new Client(connectionString);

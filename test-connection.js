@@ -1,6 +1,8 @@
 //Imports
 require("dotenv").config(); //Load environment variables
 const { Client } = require("pg");
+const env = require("./config");
+
 
 /*If you use the object form ({ pool }), you can export multiple values by adding 
 more properties to the object, like this: module.exports = { pool, anotherValue, 
@@ -8,17 +10,20 @@ yetAnotherValue };
 If you use the direct form (pool), you can only export a single value.
 */
 
-// Create connection pool using environment variables
+// Set the connection string based on the NODE_ENV
 let connectionString;
-/*
-if (process.env.NODE_ENV === "production") {
-  connectionString = process.env.PRODUCTION_DATABASE_URL;
-} else {
-  connectionString = process.env.LOCAL_DATABASE_URL;
-}
-*/
 
-connectionString = process.env.LOCAL_DATABASE_URL;
+if (env.NODE_ENV === "production") {
+  connectionString = process.env.PRODUCTION_DATABASE_URL;
+} else if (env.NODE_ENV === "development") {
+  connectionString = process.env.LOCAL_DATABASE_URL;
+} else {
+  throw new Error(`Unsupported NODE_ENV: ${process.env.NODE_ENV}`);
+}
+
+if (!connectionString) {
+  throw new Error("Connection string is not set");
+}
 
 // Test connection function
 async function testConnection() {
