@@ -3,9 +3,16 @@ require("dotenv").config(); //Load environment variables
 const { Pool } = require("pg");
 
 // Create connection pool using environment variables
+let connectionString;
+
+if (process.env.NODE_ENV === "production") {
+  connectionString = process.env.PRODUCTION_DATABASE_URL;
+} else {
+  connectionString = process.env.LOCAL_DATABASE_URL;
+}
 const pool = new Pool({
   //connectionString: "postgresql://<role_name>:<role_password>@localhost:5432/top_users"
-  connectionString: process.env.LOCAL_DATABASE_URL,
+  connectionString: connectionString,
 });
 /* If you use the object form ({ pool }), you can export multiple values by adding 
 more properties to the object, like this: module.exports = { pool, anotherValue, 
