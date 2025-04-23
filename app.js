@@ -9,7 +9,7 @@ const detailsRouter = require("./routes/detailsRouter");
 const searchRouter = require("./routes/searchRouter");
 const deleteRouter = require("./routes/deleteRouter");
 const testConnection = require("./test-connection");
-const { initializeDatabase, pool} = require("./initialize-db");
+const { initializeDatabase, pool } = require("./initialize-db");
 
 //Reference an instance of express
 const app = express();
@@ -35,7 +35,6 @@ const assetsPath = path.join(__dirname, "public");
 //folder with express.static()
 app.use(express.static(assetsPath));
 
-
 //Use express.urlencoded to access form data
 app.use(express.urlencoded({ extended: true }));
 
@@ -43,12 +42,11 @@ app.use(express.urlencoded({ extended: true }));
 testConnection();
 initializeDatabase();
 
-
 //Routes
 app.use("/", indexRouter);
 app.use("/", formRouter);
 app.use("/", detailsRouter);
-app.use('/', deleteRouter);
-app.use('/', searchRouter);
+app.use("/", deleteRouter);
+app.use("/", searchRouter);
 
 //module.exports = messages;
