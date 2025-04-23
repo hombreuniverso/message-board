@@ -1,7 +1,7 @@
 /*Populate db*/
 
 //Import
-const { clent, Client } = require("pg");
+const { Client } = require("pg");
 
 //Create username table
 const SQL = `
@@ -16,15 +16,23 @@ added DATE
 console.log(SQL);
 
 async function main() {
+  let connectionString;
+
+  if (process.env.NODE_ENV === "production") {
+    connectionString = process.env.PRODUCTION_DATABASE_URL;
+  } else {
+    connectionString = process.env.LOCAL_DATABASE_URL;
+  }
+
   console.log("seeding....");
-  const client = new Client({
-    connectionString:
-      "postgresql://colin:Marriage@localhost:5432/message-board",
-  });
+  const client = new Client(connectionString);
+  connectionString;
   await client.connect();
   await client.query(SQL);
   await client.end();
   console.log("seeding complete");
 }
 
-main();
+(async () => {
+  await main();
+})();

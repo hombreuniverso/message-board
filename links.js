@@ -2,7 +2,7 @@
 links = [
     { href: "/", text: "Homepage" },
     { href: "/new", text: "New Message" },
-    { href: "/search", text: "Search" },
-    { href: "/deleteAllMessages", text: "Delete All Messages" },
+    { href: "/searchForm", text: "SearchForm" },
+    { href: "/delete", text: "Delete All Messages" },
   ];
   

@@ -6,6 +6,7 @@ const path = require("node:path");
 const indexRouter = require("./routes/indexRouter");
 const formRouter = require("./routes/formRouter");
 const detailsRouter = require("./routes/detailsRouter");
+const searchRouter = require("./routes/searchRouter");
 const deleteRouter = require("./routes/deleteRouter");
 const testConnection = require("./test-connection");
 const { initializeDatabase, pool} = require("./initialize-db");
@@ -34,13 +35,6 @@ const assetsPath = path.join(__dirname, "public");
 //folder with express.static()
 app.use(express.static(assetsPath));
 
-//Create array of links
-
-/*links = [
-  { href: "/", text: "Homepage" },
-  { href: "/new", text: "New Message" },
-];
-*/
 
 //Use express.urlencoded to access form data
 app.use(express.urlencoded({ extended: true }));
@@ -55,5 +49,6 @@ app.use("/", indexRouter);
 app.use("/", formRouter);
 app.use("/", detailsRouter);
 app.use('/', deleteRouter);
+app.use('/', searchRouter);
 
-module.exports = messages;
+//module.exports = messages;

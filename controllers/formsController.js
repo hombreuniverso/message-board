@@ -1,8 +1,7 @@
 /*Forms Controller to render forms*/
 const express = require("express");
 const links = require("../links");
-//const db = require("../models/db");
-//const db = require("../models/queries");
+const db = require("../models/queries");
 
 //Get forms
 module.exports.getForm = (req, res) => {
@@ -35,9 +34,20 @@ async function postForm(req, res) {
     username = req.body.username;
     snippet = req.body.snippet;
     details = req.body.details;
-   
-    await db2.insertMessages(username, snippet, details);
-    res.redirect("/");
+
+    await db.searchUsername(username);
+    let dbName = await db.searchUsername(username);
+    let storedName = dbName.map((name) => name.username);
+    await db.insertMessages(username, snippet, details);
+      res.redirect("/");
+   /*
+    if (storedName == username) {
+      res.send("Username already taken! Choose another name");
+    } else {
+      await db.insertMessages(username, snippet, details);
+      res.redirect("/");
+    }
+    */
   } catch (error) {
     console.log(error);
     res.status(500).render("error", {

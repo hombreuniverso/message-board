@@ -5,7 +5,7 @@ const { Pool } = require("pg");
 // Create connection pool using environment variables
 const pool = new Pool({
   //connectionString: "postgresql://<role_name>:<role_password>@localhost:5432/top_users"
-  connectionString: process.env.DATABASE_URL,
+  connectionString: process.env.LOCAL_DATABASE_URL,
 });
 /* If you use the object form ({ pool }), you can export multiple values by adding 
 more properties to the object, like this: module.exports = { pool, anotherValue, 

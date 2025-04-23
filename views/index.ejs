@@ -1,4 +1,6 @@
 <html>
+  <!--Index (Homepage Template)-->
+
   <!--Head-->
   <%- include("partials/header")%>
 
@@ -13,10 +15,16 @@
     <div class="message-container">
       <ul class="message-ul">
         <%for(i = 0; i < messages.length; i++){%> <%let index = i%>
-        <div class="line-anchor-container">
-          <li class="line" data-anchornum="<%=index%>">
-            <%= `${messages[i].id} ${messages[i].username}: ${messages[i].snippet}
-            ${messages[i].added}` %>
+        <%let id =`${messages[i].id}`%>
+          <div class="line-anchor-container">
+          <button class="btn-delete" data-id="<%=id%>" data-anchornum="<%=index%>">Delete</button>
+          <li
+            class="line"
+            data-anchornum="<%=index%>"
+            data-id="<%=id%>"
+          >
+            <%= `${messages[i].id} ${messages[i].username}:
+            ${messages[i].snippet} ${messages[i].added.toDateString()}` %>
           </li>
 
           <!--Use template literals for dynamic data
@@ -35,16 +43,28 @@
       //Return to original code:
 
       //Find index of button clicked
-      const buttons = document.querySelectorAll(".btn-open");
+      const btnOpen = document.querySelectorAll(".btn-open");
+      const btnDelete = document.querySelectorAll(".btn-delete");
 
-      buttons.forEach((button) => {
+      //Get index number when open button is clicked
+      btnOpen.forEach((button) => {
         button.addEventListener("click", (e) => {
           let index = button.dataset.anchornum;
-          //let currentIndex = Array.prototype.indexOf.call(buttons, e.target);
-          location.href = `details?index=${index}`;
+            //let currentIndex = Array.prototype.indexOf.call(buttons, e.target);
+            (location.href = `details?index=${index}`);
           // console.log({ index:currentIndex });
           console.log({ index });
           // e.preventDefault();
+        });
+      });
+      //Get index number when delete button is clicked
+      btnDelete.forEach((button) => {
+        button.addEventListener("click", (e) => {
+          let index = button.dataset.anchornum;
+          let id = button.dataset.id;
+          location.href = `/deleteUser?index=${index}&id=${id}`;
+          console.log(index);
+          //e.preventDefault();
         });
       });
 

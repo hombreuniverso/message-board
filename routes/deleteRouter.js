@@ -8,8 +8,10 @@ const deleteController = require('../controllers/deleteController');
 const deleteRouter = express.Router();
 
 //Create router logic
-deleteRouter.get('/deleteAllMessages', deleteController.deleteAllMessages);
-
+deleteRouter.get('/deleteUser', deleteController.getDeleteUserConfirmation);
+deleteRouter.get('/delete', deleteController.getDeleteConfirmation);
+deleteRouter.post('/deleteAllMessages', deleteController.deleteAllMessages);
+deleteRouter.post('/deleteUserMessage', deleteController.deleteUserMessage);
 //Export deleteRouter
 module.exports = deleteRouter;
 
