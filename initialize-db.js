@@ -58,7 +58,12 @@ async function initializeDatabase() {
 */
     //pool.release();
   } catch (error) {
-    console.error("Database initialization failed:", error.message);
+    console.error(
+      "Database initialization failed:",
+      error.message,
+      "Connection string:",
+      connectionString
+    );
   }
   //Call the initializeDatabase function in app.js file
   //to return the pool object which can be used to perform
