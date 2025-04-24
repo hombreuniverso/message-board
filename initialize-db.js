@@ -7,7 +7,7 @@ const env = require("./config");
 let connectionString;
 
 if (env.NODE_ENV === "production") {
-  connectionString = process.env.PRODUCTION_DATABASE_URL;
+  connectionString = process.env.PRODUCTION_DATABASE_URL + '?sslmode=require'
 } else if (env.NODE_ENV === "development") {
   connectionString = process.env.LOCAL_DATABASE_URL;
 } else {
