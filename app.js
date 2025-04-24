@@ -1,7 +1,7 @@
 //App Main point of entry
 
 //Set up environment variables
-//process.env.NODE_ENV = "development";
+//process.env.NODE_ENV = "production";
 //console.log("N0DE_ENV:", process.env.NODE_ENV);
 
 //Import express, path, ejs
@@ -14,37 +14,46 @@ const searchRouter = require("./routes/searchRouter");
 const deleteRouter = require("./routes/deleteRouter");
 const testConnection = require("./test-connection");
 const { initializeDatabase, pool } = require("./initialize-db");
-const env = require("./config");
+const config = require("./config");
 
-// Get the connection string based on the NODE_ENV
-if (env.NODE_ENV === "production") {
-  connectionString = env.PRODUCTION_DATABASE_URL + "?sslmode=require";
-  console.log("N0DE_ENV:", process.env.NODE_ENV);
-} else if (env.NODE_ENV === "development") {
-  connectionString = env.LOCAL_DATABASE_URL;
-  console.log("N0DE_ENV:", process.env.NODE_ENV);
-} else {
-  throw new Error(`Unsupported NODE_ENV: ${env.NODE_ENV}`);
-}
+//Get the connection string based on the NODE_E
+config
+  .then((env) => {
+    if (env.NODE_ENV === "production") {
+      console.log("N0DE_ENV:", env.NODE_ENV);
+    } else {
+      console.log("NODE_ENV:", env.NODE_ENV);
+    }
 
-if (!connectionString) {
-  throw new Error("Connection string is not set");
-}
+    if (env.NODE_ENV === "production") {
+      const dbUrl = env.PRODUCTION_DATABASE_URL + "?sslmode=require";
+      console.log(dbUrl);
+    } else {
+      const dbUrl = env.LOCAL_DATABASE_URL;
+      console.log(dbUrl);
+    }
 
-// Now you can access the environment variables
-console.log(env.LOCAL_DATABASE_URL);
-console.log(env.PRODUCTION_DATABASE_URL);
+    const dbUrl = env.PRODUCTION_DATABASE_URL;
+    console.log(dbUrl);
 
-//Reference an instance of express
-const app = express();
+    // Now you can access the environment variables
+    console.log(env.LOCAL_DATABASE_URL);
+    console.log(env.PRODUCTION_DATABASE_URL);
 
-//Create variable to store port value
-const port = process.env.Port || 8000;
+    //Reference an instance of express
+    const app = express();
 
-//Create server
-app.listen(port, (req, res) => {
-  console.log(`Server is listening on port:${port}`);
-});
+    //Create variable to store port value
+    const port = process.env.Port || 8080;
+
+    //Create server
+    app.listen(port, () => {
+      console.log(`Server is listening on port: ${port}`);
+    });
+  })
+  .catch((error) => {
+    console.error("Error loading config:", error);
+  });
 
 //Set views path
 app.set("views", path.join(__dirname, "views"));
