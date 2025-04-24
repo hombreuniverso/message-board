@@ -1,5 +1,9 @@
 //App Main point of entry
 
+//Set up environment variables
+process.env.NODE_ENV = "production";
+console.log("N0DE_ENV:", process.env.NODE_ENV);
+
 //Import express, path, ejs
 const express = require("express");
 const path = require("node:path");
