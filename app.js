@@ -78,7 +78,7 @@ if (!config.NODE_ENV) {
     app.use("/", searchRouter);
 
     //Create variable to store port value
-    const port = process.env.Port || 8000;
+    const port = process.env.Port || 8080;
 
     //Create server
     app.listen(port, () => {
