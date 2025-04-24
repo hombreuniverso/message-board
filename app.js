@@ -1,8 +1,8 @@
 //App Main point of entry
 
 //Set up environment variables
-process.env.NODE_ENV = "production";
-console.log("N0DE_ENV:", process.env.NODE_ENV);
+//process.env.NODE_ENV = "development";
+//console.log("N0DE_ENV:", process.env.NODE_ENV);
 
 //Import express, path, ejs
 const express = require("express");
@@ -18,9 +18,11 @@ const env = require("./config");
 
 // Get the connection string based on the NODE_ENV
 if (env.NODE_ENV === "production") {
-  connectionString = env.PRODUCTION_DATABASE_URL;
+  connectionString = env.PRODUCTION_DATABASE_URL + "?sslmode=require";
+  console.log("N0DE_ENV:", process.env.NODE_ENV);
 } else if (env.NODE_ENV === "development") {
   connectionString = env.LOCAL_DATABASE_URL;
+  console.log("N0DE_ENV:", process.env.NODE_ENV);
 } else {
   throw new Error(`Unsupported NODE_ENV: ${env.NODE_ENV}`);
 }
@@ -37,7 +39,7 @@ console.log(env.PRODUCTION_DATABASE_URL);
 const app = express();
 
 //Create variable to store port value
-const port = process.env.Port || 8080;
+const port = process.env.Port || 8000;
 
 //Create server
 app.listen(port, (req, res) => {
