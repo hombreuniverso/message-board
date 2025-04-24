@@ -1,8 +1,8 @@
 //App Main point of entry
 
 //Set up environment variables
-//process.env.NODE_ENV = "production";
-//console.log("N0DE_ENV:", process.env.NODE_ENV);
+process.env.NODE_ENV = "production";
+console.log("N0DE_ENV:", process.env.NODE_ENV);
 
 //Import express, path, ejs
 const express = require("express");
@@ -33,8 +33,6 @@ config
       console.log(dbUrl);
     }
 
-    const dbUrl = env.PRODUCTION_DATABASE_URL + "?sslmode=require";
-    console.log(dbUrl);
     /*
     //Set up environment variables
 if (!config.NODE_ENV) {
