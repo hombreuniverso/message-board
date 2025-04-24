@@ -14,7 +14,7 @@ If you use the direct form (pool), you can only export a single value.
 let connectionString;
 
 if (process.env.NODE_ENV === "production") {
-  connectionString = process.env.PRODUCTION_DATABASE_URL;
+  connectionString = process.env.PRODUCTION_DATABASE_URL + "?sslmode=require";
 } else if (process.env.NODE_ENV === "development") {
   connectionString = process.env.LOCAL_DATABASE_URL;
 } else {

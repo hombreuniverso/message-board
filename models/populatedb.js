@@ -23,7 +23,7 @@ config
       let connectionString;
 
       if (process.env.NODE_ENV === "production") {
-        connectionString = process.env.PRODUCTION_DATABASE_URL;
+        connectionString = process.env.PRODUCTION_DATABASE_URL + "?sslmode=require";
       } else if (process.env.NODE_ENV === "development") {
         connectionString = process.env.LOCAL_DATABASE_URL;
       } else {

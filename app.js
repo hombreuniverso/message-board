@@ -16,7 +16,6 @@ const testConnection = require("./test-connection");
 const { initializeDatabase, pool } = require("./initialize-db");
 const config = require("./config");
 
-
 //Get the connection string based on the NODE_E
 config
   .then((env) => {
@@ -34,9 +33,9 @@ config
       console.log(dbUrl);
     }
 
-    const dbUrl = env.PRODUCTION_DATABASE_URL;
+    const dbUrl = env.PRODUCTION_DATABASE_URL + "?sslmode=require";
     console.log(dbUrl);
-/*
+    /*
     //Set up environment variables
 if (!config.NODE_ENV) {
   config.NODE_ENV = "development"; // default to development if not set
