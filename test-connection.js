@@ -13,9 +13,9 @@ If you use the direct form (pool), you can only export a single value.
 // Set the connection string based on the NODE_ENV
 let connectionString;
 
-if (env.NODE_ENV === "production") {
-  connectionString = process.env.PRODUCTION_DATABASE_URL + '?sslmode=require';
-} else if (env.NODE_ENV === "development") {
+if (process.env.NODE_ENV === "production") {
+  connectionString = process.env.PRODUCTION_DATABASE_URL;
+} else if (process.env.NODE_ENV === "development") {
   connectionString = process.env.LOCAL_DATABASE_URL;
 } else {
   throw new Error(`Unsupported NODE_ENV: ${process.env.NODE_ENV}`);

@@ -1,14 +1,22 @@
 //Imports
 require("dotenv").config(); //Load environment variables
 const { Pool } = require("pg");
-const env = require("./config");
+const config = require("./config");
+
+/*
+//Set up environment variables
+if (!config.NODE_ENV) {
+  config.NODE_ENV = "development"; // default to development if not set
+}
+  */
+
 
 // Create connection pool using environment variables
 let connectionString;
 
-if (env.NODE_ENV === "production") {
-  connectionString = process.env.PRODUCTION_DATABASE_URL + '?sslmode=require'
-} else if (env.NODE_ENV === "development") {
+if (process.env.NODE_ENV === "production") {
+  connectionString = process.env.PRODUCTION_DATABASE_URL;
+} else if (process.env.NODE_ENV === "development") {
   connectionString = process.env.LOCAL_DATABASE_URL;
 } else {
   throw new Error(`Unsupported NODE_ENV: ${process.env.NODE_ENV}`);
@@ -17,13 +25,9 @@ if (env.NODE_ENV === "production") {
 if (!connectionString) {
   throw new Error("Connection string is not set");
 }
-
 const pool = new Pool({
   connectionString: connectionString,
-/*  ssl: {
-    rejectUnauthorized: false,
-  },
-  */
+
 });
 
 

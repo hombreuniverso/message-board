@@ -1,4 +1,3 @@
-// config.js
 module.exports = new Promise((resolve, reject) => {
   const dotenv = require("dotenv");
   const env = process.env.NODE_ENV || "development";
@@ -6,9 +5,11 @@ module.exports = new Promise((resolve, reject) => {
     path: `.env.${env}`,
   });
 
-  if (env === "production") {
-    process.env.PRODUCTION_DATABASE_URL = `postgres://colin:npg_6AhcZBvfu1gC@ep-divine-frog-a2ywuvk3.eu-central-1.pg.koyeb.app/messageboard?sslmode=require`;
-  }
+  const config = {
+    NODE_ENV: env,
+    LOCAL_DATABASE_URL: process.env.LOCAL_DATABASE_URL,
+    PRODUCTION_DATABASE_URL: process.env.PRODUCTION_DATABASE_URL,
+  };
 
-  resolve(process.env);
+  resolve(config);
 });
