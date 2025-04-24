@@ -19,9 +19,14 @@ if (!connectionString) {
 }
 
 const pool = new Pool({
-  //connectionString: "postgresql://<role_name>:<role_password>@localhost:5432/top_users"
   connectionString: connectionString,
+/*  ssl: {
+    rejectUnauthorized: false,
+  },
+  */
 });
+
+
 /* If you use the object form ({ pool }), you can export multiple values by adding 
 more properties to the object, like this: module.exports = { pool, anotherValue, 
 yetAnotherValue };
