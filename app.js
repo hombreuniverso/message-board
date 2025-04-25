@@ -33,13 +33,6 @@ config
       console.log(dbUrl);
     }
 
-    /*
-    //Set up environment variables
-if (!config.NODE_ENV) {
-  config.NODE_ENV = "development"; // default to development if not set
-}
-*/
-
     // Now you can access the environment variables
     console.log(env.LOCAL_DATABASE_URL);
     console.log(env.PRODUCTION_DATABASE_URL);
