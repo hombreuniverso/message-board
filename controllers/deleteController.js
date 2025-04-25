@@ -30,8 +30,6 @@ async function deleteUserMessage(req, res) {
   try {
     let index = Number(req.query.index);
     let id = req.query.id;
-    console.log(index);
-    console.log(id);
     let user = await db.getAllUsernames();   
     await db.deleteUserMessage(user[index].username, id);
     res.render("delete", {

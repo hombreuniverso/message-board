@@ -1,7 +1,7 @@
 //App Main point of entry
 
 //Set up environment variables
-process.env.NODE_ENV = "production";
+process.env.NODE_ENV = "development";
 console.log("N0DE_ENV:", process.env.NODE_ENV);
 
 //Import express, path, ejs

@@ -27,6 +27,13 @@ body {
   margin: 0;
 }
 
+.button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
 .line {
   padding: 10px;
   border-bottom: 1px solid #ccc;
@@ -39,16 +46,13 @@ body {
 }
 
 .btn-open {
-  background-color: #4CAF50;
+  background-color: #4caf50;
   color: #fff;
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-
 }
-
-
 
 @keyframes fade-in {
   0% {
@@ -93,7 +97,7 @@ body {
 }
 
 .form-submit {
-  background-color: #4CAF50;
+  background-color: #4caf50;
   color: #fff;
   padding: 10px 20px;
   border: none;
@@ -117,12 +121,14 @@ body {
 
 /* Responsive design */
 @media (max-width: 768px) {
-  .message-container, .form-container {
+  .message-container,
+  .form-container {
     max-width: 100%;
     margin: 0 auto;
     text-align: center;
   }
-  .message-container ul, .form-container {
+  .message-container ul,
+  .form-container {
     font-size: 18px;
     line-height: 1.5;
   }
