@@ -1,7 +1,6 @@
 /*Search Results Controller*/
 
 //Imports
-const express = require("express");
 const db = require("../models/queries");
 
 //Create search form

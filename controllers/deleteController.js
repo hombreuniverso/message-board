@@ -1,7 +1,6 @@
 //Delete Messages Controller
 
 //Imports
-const express = require("express");
 const db = require("../models/queries");
 
 //Get delete username confirmation

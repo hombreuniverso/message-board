@@ -1,9 +1,7 @@
 //Details Controller to render details
 
 //Imports
-const express = require("express");
 const links = require("../links");
-const db = require("../models/db");
 
 //Get details
 module.exports.getDetails = (req, res) => {
